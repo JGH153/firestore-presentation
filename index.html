@@ -1,374 +1,366 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Firestore</title>
 
-	<title>Firestore</title>
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/league.css" />
 
-	<link rel="stylesheet" href="css/reveal.css">
-	<link rel="stylesheet" href="css/theme/league.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css" />
 
-	<!-- Theme used for syntax highlighting of code -->
-	<link rel="stylesheet" href="lib/css/zenburn.css">
+    <style>
+      .no-img-border {
+        background: unset !important;
+        border: unset !important;
+        box-shadow: unset !important;
+      }
 
-	<style>
-		.no-img-border {
-			background: unset !important;
-			border: unset !important;
-			box-shadow: unset !important;
-		}
+      .no-caps {
+        text-transform: none !important;
+      }
 
-		.no-caps {
-			text-transform: none !important;
-		}
+      .contain-bg-img div {
+        background-size: contain !important;
+      }
 
-		.contain-bg-img div {
-			background-size: contain !important;
-		}
+      .slides {
+        width: 80% !important;
+      }
 
-		.slides {
-			width: 80% !important;
-		}
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        text-transform: none !important;
+        text-shadow: none !important;
+      }
 
-		h1,
-		h2,
-		h3,
-		h4,
-		h5 {
-			text-transform: none !important;
-			text-shadow: none !important;
-		}
+      .black-stroke {
+        -webkit-text-stroke: 2px black;
+      }
 
-		.black-stroke {
-			-webkit-text-stroke: 2px black;
-		}
+      .black-stroke-thin {
+        -webkit-text-stroke: 1px black;
+      }
 
-		.black-stroke-thin {
-			-webkit-text-stroke: 1px black;
-		}
+      .line-through {
+        text-decoration: line-through;
+      }
 
-		.line-through {
-			text-decoration: line-through;
-		}
+      .firebase-color {
+        color: #ffca28;
+      }
 
-		.firebase-color {
-			color: #FFCA28;
-		}
+      .firebase-color-amber {
+        color: #ffa000;
+      }
 
-		.firebase-color-amber {
-			color: #FFA000;
-		}
+      .firebase-color-orange {
+        color: #f57c00;
+      }
 
-		.firebase-color-orange {
-			color: #F57C00;
-		}
+      .red {
+        color: red;
+      }
 
-		.red {
-			color: red;
-		}
+      .gray {
+        color: gray;
+      }
 
-		.gray {
-			color: gray;
-		}
+      .firebase-color {
+        color: orange;
+      }
+      .strike {
+        text-decoration: line-through;
+      }
+    </style>
 
-		.firebase-color {
-			color: orange;
-		}
-	</style>
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.type = "text/css";
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? "css/print/pdf.css"
+        : "css/print/paper.css";
+      document.getElementsByTagName("head")[0].appendChild(link);
+    </script>
+  </head>
 
-	<!-- Printing and PDF exports -->
-	<script>
-		var link = document.createElement('link');
-		link.rel = 'stylesheet';
-		link.type = 'text/css';
-		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
-		document.getElementsByTagName('head')[0].appendChild(link);
-	</script>
-</head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>
+            <span class="firebase-color">Firestore</span>
+          </h1>
+          <h3>Jan Greger Hemb</h3>
+          <h4>Tec lead & Mentor at Sysco</h4>
+        </section>
+        <section>
+          <img class="stretch no-img-border" data-src="media/firebase.svg" />
+        </section>
+        <section>
+          <section>
+            <h1>
+              What is <span class="line-through gray">Love</span>
+              <span class="firebase-color">Firebase?</span>
+            </h1>
+          </section>
+          <!-- <section data-background="media/firebaseHome.png"></section>
+          <section>
+            <img class="stretch no-img-border" data-src="media/auth.png" />
+          </section>
+          <section data-background="media/auth-ui.png"></section>
+          <section>
+            <img class="stretch no-img-border" data-src="media/storage.png" />
+          </section>
+          <section data-background="media/storage-ui.png"></section>
+          <section>
+            <img class="stretch no-img-border" data-src="media/hosting.png" />
+          </section>
+          <section data-background="media/hosting-ui.png"></section>
+          <section>
+            <img class="stretch no-img-border" data-src="media/functions.png" />
+          </section>
+          <section data-background="media/functions-ui.png"></section>
+          <section>
+            <img class="stretch no-img-border" data-src="media/mlkit.png" />
+          </section>
+          <section data-background="media/mlkit-ui.png"></section>
 
-<body>
-	<div class="reveal">
-		<div class="slides">
-			<section>
-				<h1>
-					<span class="firebase-color">Firestore</span>
-				</h1>
-				<h3>
-					Jan Greger Hemb & Erik Kringstad Olsen
-				</h3>
-				<h4>
-					Senior knowledge engineers at Computas
-				</h4>
-				<h4>
-					bit.ly/firestore2019
-				</h4>
-			</section>
-			<section>
-				<img class="stretch no-img-border" data-src="media/firebase.svg">
-			</section>
-			<section>
-				<section>
-					<h1>What is <span class="line-through gray">Love</span> <span class="firebase-color">Firebase?</span></h1>
-				</section>
-				<section data-background="media/firebaseHome.png">
-					<!-- <img class="stretch no-img-border" data-src="media/firebaseHome.png"> -->
-				</section>
-				<section>
-					<img class="stretch no-img-border" data-src="media/auth.png">
-				</section>
-				<section data-background="media/auth-ui.png">
-
-				</section>
-				<section>
-					<img class="stretch no-img-border" data-src="media/storage.png">
-				</section>
-				<section data-background="media/storage-ui.png">
-
-				</section>
-				<section>
-					<img class="stretch no-img-border" data-src="media/hosting.png">
-				</section>
-				<section data-background="media/hosting-ui.png">
-
-				</section>
-				<section>
-					<img class="stretch no-img-border" data-src="media/functions.png">
-				</section>
-				<section data-background="media/functions-ui.png">
-
-				</section>
-				<section>
-					<img class="stretch no-img-border" data-src="media/mlkit.png">
-				</section>
-				<section data-background="media/mlkit-ui.png">
-				</section>
-
-				<section>
-					<img class="stretch no-img-border" data-src="media/database.png">
-				</section>
-				<section data-background="media/databse-ui.png">
-
-				</section>
-				<section>
-					<h2>
-						And finally we have...
-					</h2>
-				</section>
-				<section>
-					<img class="stretch no-img-border" data-src="media/firestore.png">
-				</section>
-				<section data-background="media/firestore-ui.png">
-
-				</section>
-			</section>
-			<section>
-				<section>
-					<h1>
-						<span class="firebase-color">Firestore</span> in a nutshell
-					</h1>
-					<ul>
-						<li class="fragment">
-							NoSQL cloud database
-						</li>
-						<li class="fragment">
-							Documents/JSON Objects
-						</li>
-						<li class="fragment">
-							Highly scalable with multi region replication
-						</li>
-						<li class="fragment">
-							Realtime synchronization
-						</li>
-						<!-- <li class="fragment">
+          <section>
+            <img class="stretch no-img-border" data-src="media/database.png" />
+          </section>
+          <section data-background="media/databse-ui.png"></section>
+          <section>
+            <h2>And finally we have...</h2>
+          </section>
+          <section>
+            <img class="stretch no-img-border" data-src="media/firestore.png" />
+          </section>
+          <section data-background="media/firestore-ui.png"></section> -->
+        </section>
+        <section>
+          <section>
+            <h1><span class="firebase-color">Firestore</span> in a nutshell</h1>
+            <ul>
+              <li class="fragment">NoSQL cloud database</li>
+              <li class="fragment">Documents/JSON Objects</li>
+              <li class="fragment">
+                Highly scalable with multi region replication
+              </li>
+              <li class="fragment">Realtime synchronization</li>
+              <!-- <li class="fragment">
 							Hierarchical structuring with sub collections
 						</li> -->
-						<li class="fragment">
-							Expressive querying (for NoSQL)
-						</li>
-						<li class="fragment">
-							ACID transactions
-						</li>
-					</ul>
-				</section>
+              <li class="fragment">Expressive querying (for NoSQL)</li>
+              <li class="fragment">ACID transactions</li>
+            </ul>
+          </section>
 
-				<section>
-					<img class="stretch no-img-border" data-src="media/firestoreColl.png">
-				</section>
-				<section>
-					<img class="stretch no-img-border" data-src="media/firestoreDocs.png">
-				</section>
-				<section>
-					<table>
-						<tbody>
-							<tr>
-								<td>SQL</td>
-								<td>Table</td>
-								<td>Row</td>
-								<td>Column</td>
-							</tr>
-							<tr>
-								<td>NoSQL</td>
-								<td>Collection</td>
-								<td>Document</td>
-								<td>Field</td>
-							</tr>
-						</tbody>
-					</table>
-				</section>
-				<section data-background="media/firestore-ui.png">
-
-				</section>
-			</section>
-			<section>
-				<section>
-					<h1><span class="firebase-color">NoSQL</span> in a nutshell</h1>
-					<img class="stretch no-img-border" data-src="media/nosql-comparison.png">
-				</section>
-				<section>
-					<h2> (Usually) schema-less </h2>
-					<aside class="notes" data-markdown>
-						- less restrictions, but...
-					</aside>
-				</section>
-				<section>
-					<h2> Easy to add fields </h2>
-					<h3> But you need to code defensively</h3>
-				</section>
-				<section>
-					<h2> <span class="firebase-color">NoSQL</span> means no SQL... </h2>
-				</section>
-				<section class="contain-bg-img" data-background="media/pika.png">
-					<aside class="notes" data-markdown>
-						- No fancy joins
-						- Which leads to...
-					</aside>
-
-				</section>
-				<section>
-					<h2> AAAHHH!!! Duplication! </h2>
-				</section>
-				<section data-background="media/duplication.jpg">
-					<aside class="notes" data-markdown>
-						- Painful at first
-						- keep all copies up to date for any updates
-						- Fewer "tables"
-						- Leads to ..
-
-					</aside>
-
-				</section>
-				<section>
-					<h2>One <span class="firebase-color">page </span> in one <span class="firebase-color">document</span></h2>
-				</section>
-				<section>
-					<h2>But, why <span class="firebase-color">NoSQL</span>?</h2>
-					<aside class="notes" data-markdown>
-						- Handles unstructured data
-						- No schema
-						- Great for prototyping and changing structure on the fly
-						- and most importantly...
-					</aside>
-				</section>
-				<section>
-					<h2> Scaling </h2>
-					<img class="stretch no-img-border" data-src="media/scaling.png">
-					<aside class="notes" data-markdown>
-						- Horizontal vs Vertical
-						- Sharding
-						- Over til Greger..
-					</aside>
-				</section>
-			</section>
-			<section>
-				<section>
-					<h1>The benefits of <span class="firebase-color">Firestore</span></h1>
-				</section>
-				<section>
-					<h2>
-						Lookup-time is <span class="firebase-color">independent</span> of stored data
-					</h2>
-				</section>
-				<section>
-					<h2>Automatically scales to match <span class="firebase-color">ANY</span> usage</h2>
-				</section>
-				<section>
-					<h2>Automatic data synchronization</h2>
-				</section>
-				<section>
-					<h2>Offline support</h2>
-				</section>
-				<section>
-					<h2> ACID transactions</h2>
-				</section>
-				<section>
-					<h2>Multiple field where statements</h2>
-				</section>
-				<!-- <section>
+          <section>
+            <img
+              class="stretch no-img-border"
+              data-src="media/firestoreColl.png"
+            />
+          </section>
+          <section>
+            <img
+              class="stretch no-img-border"
+              data-src="media/firestoreDocs.png"
+            />
+          </section>
+          <section>
+            <table>
+              <tbody>
+                <tr>
+                  <td>SQL</td>
+                  <td>Table</td>
+                  <td>Row</td>
+                  <td>Column</td>
+                </tr>
+                <tr>
+                  <td>NoSQL</td>
+                  <td>Collection</td>
+                  <td>Document</td>
+                  <td>Field</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <section data-background="media/firestore-ui.png"></section>
+        </section>
+        <section>
+          <section>
+            <h1><span class="firebase-color">NoSQL</span> in a nutshell</h1>
+            <img
+              class="stretch no-img-border"
+              data-src="media/nosql-comparison.png"
+            />
+          </section>
+          <section>
+            <h2>(Usually) schema-less</h2>
+            <aside class="notes" data-markdown>
+              - less restrictions, but...
+            </aside>
+          </section>
+          <section>
+            <h2>Easy to add fields</h2>
+            <h3>But you need to code defensively</h3>
+          </section>
+          <section>
+            <h2><span class="firebase-color">NoSQL</span> means no SQL...</h2>
+          </section>
+          <section class="contain-bg-img" data-background="media/pika.png">
+            <aside class="notes" data-markdown>
+              - No fancy joins - Which leads to...
+            </aside>
+          </section>
+          <section>
+            <h2>AAAHHH!!! Duplication!</h2>
+          </section>
+          <section data-background="media/duplication.jpg">
+            <aside class="notes" data-markdown>
+              - Painful at first - keep all copies up to date for any updates -
+              Fewer "tables" - Leads to ..
+            </aside>
+          </section>
+          <section>
+            <h2>
+              One <span class="firebase-color">page </span> in one
+              <span class="firebase-color">document</span>
+            </h2>
+          </section>
+          <section>
+            <h2>But, why <span class="firebase-color">NoSQL</span>?</h2>
+            <aside class="notes" data-markdown>
+              - Handles unstructured data - No schema - Great for prototyping
+              and changing structure on the fly - and most importantly...
+            </aside>
+          </section>
+          <section>
+            <h2>Scaling</h2>
+            <img class="stretch no-img-border" data-src="media/scaling.png" />
+            <aside class="notes" data-markdown>
+              - Horizontal vs Vertical - Sharding - Over til Greger..
+            </aside>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h1>
+              The benefits of <span class="firebase-color">Firestore</span>
+            </h1>
+          </section>
+          <section>
+            <h2>
+              Lookup-time is <span class="firebase-color">independent</span> of
+              stored data
+            </h2>
+          </section>
+          <section>
+            <h2>
+              Automatically scales to match
+              <span class="firebase-color">ANY</span> usage
+            </h2>
+          </section>
+          <section>
+            <h2>Automatic data synchronization</h2>
+          </section>
+          <section>
+            <h2>Offline support</h2>
+          </section>
+          <section>
+            <h2>ACID transactions</h2>
+          </section>
+          <section>
+            <h2>Multiple field where statements</h2>
+          </section>
+          <!-- <section>
 					<h2>Benefits comming for Realtime Database</h2>
 					<ul>
 						<li>Scaling</li>
 						<li>Array contains</li>
 					</ul>
 				</section> -->
-			</section>
-			<section>
-				<section>
-					<h1><span class="firebase-color">All</span> data is <span class="firebase-color">indexed</span></h1>
-					<aside class="notes" data-markdown>
-						- Zigzag merge join
-					</aside>
-				</section>
-				<section>
-					<h2>Never loops over all data when searching</h2>
-				</section>
-				<section>
-					<h2>How is data indexed?</h2>
-					<aside class="notes" data-markdown>
-						- all fields ascending and descending by default
-					</aside>
-				</section>
-				<section data-background="media/index-single.png">
-				</section>
-				<section>
-					<h2>Composite indexes</h2>
-				</section>
-				<section data-background="media/comp-index.png">
-
-				</section>
-			</section>
-			<section>
-				<section>
-					<h1>The drawbacks of <span class="firebase-color">Firestore</span></h1>
-				</section>
-				<section>
-					<h2>If it can't be indexed, it can't be searched</h2>
-				</section>
-				<section>
-					<h2>Mixing datatypes causes problems</h2>
-				</section>
-				<section>
-					<h2>Can't query across sub collections</h2>
-					<img class="stretch no-img-border" data-src="media/firestoreDocs.png">
-				</section>
-				<section>
-					<h2>Can't do where like</h2>
-					<ul>
-						<li class="fragment">Where age <span class="red">!=</span> 25</li>
-						<li class="fragment">Where age = 25 <span class="red">OR</span> age = 26</li>
-						<li class="fragment">Where name = <span class="red">"%Jan%"</span></li>
-						<li class="fragment">Where age = <span class="red">*missing*</span></li>
-						<li class="fragment">And no <span class="red">JOIN</span></li>
-					</ul>
-				</section>
-				<section>
-					<h2>
-						Can't do "<span class="firebase-color">WHERE</span> age &lt; 25 <span class="firebase-color">ORDER BY</span>
-						name"
-					</h2>
-				</section>
-				<!-- <section>
+        </section>
+        <section>
+          <section>
+            <h1>
+              <span class="firebase-color">All</span> data is
+              <span class="firebase-color">indexed</span>
+            </h1>
+            <aside class="notes" data-markdown>- Zigzag merge join</aside>
+          </section>
+          <section>
+            <h2>Never loops over all data when searching</h2>
+          </section>
+          <section>
+            <h2>How is data indexed?</h2>
+            <aside class="notes" data-markdown>
+              - all fields ascending and descending by default
+            </aside>
+          </section>
+          <section data-background="media/index-single.png"></section>
+          <section>
+            <h2>Composite indexes</h2>
+          </section>
+          <section data-background="media/comp-index.png"></section>
+        </section>
+        <section>
+          <section>
+            <h1>
+              The drawbacks of <span class="firebase-color">Firestore</span>
+            </h1>
+          </section>
+          <section>
+            <h2>If it can't be indexed, it can't be searched</h2>
+          </section>
+          <section>
+            <h2>Mixing datatypes causes problems</h2>
+          </section>
+          <section>
+            <h2>Can't query across sub collections</h2>
+            <img
+              class="stretch no-img-border"
+              data-src="media/firestoreDocs.png"
+            />
+          </section>
+          <section>
+            <h2>Can't do <b>where</b> like</h2>
+            <ul>
+              <li class="fragment strike">
+                Where age <span class="red">!=</span> 25
+              </li>
+              <li class="fragment strike">
+                Where age = 25 <span class="red">OR</span> age = 26
+              </li>
+              <li class="fragment">
+                Where name = <span class="red">"%Jan%"</span>
+              </li>
+              <li class="fragment">
+                Where age = <span class="red">*missing*</span>
+              </li>
+              <li class="fragment">And no <span class="red">JOIN</span></li>
+            </ul>
+          </section>
+          <section>
+            <h2>
+              Can't do "<span class="firebase-color">WHERE</span> age &lt; 25
+              <span class="firebase-color">ORDER BY</span>
+              name"
+            </h2>
+          </section>
+          <!-- <section>
 					<table>
 						<thead>
 							<tr>
@@ -396,85 +388,79 @@
 						</tbody>
 					</table>
 				</section> -->
-				<section>
-					<h2>Document limitations</h2>
-					<ul>
-						<li class="fragment">Max 1 write per sec per document</li>
-						<li class="fragment">Max 1MB per document</li>
-						<li class="fragment">Max 20k fields</li>
-					</ul>
-				</section>
-				<!-- <section>
+          <section>
+            <h2>Document limitations</h2>
+            <ul>
+              <li class="fragment">Max 1 write per sec per document</li>
+              <li class="fragment">Max 1MB per document</li>
+              <li class="fragment">Max 20k fields</li>
+            </ul>
+          </section>
+          <!-- <section>
 					<h2>Can't order by missing fields</h2>
 				</section> -->
-			</section>
-			<section>
-				<section>
-					<h1>
-						<span class="firebase-color">Querying</span> and <br><span class="firebase-color">sorting</span> data
-					</h1>
-				</section>
-				<section>
-					<h2>
-						Four operators to play with
-					</h2>
-					<ul>
-						<li class="fragment">
-							Where
-						</li>
-						<li class="fragment">
-							OrderBy
-						</li>
-						<li class="fragment">
-							Limit
-						</li>
-						<li class="fragment">
-							startAt
-						</li>
-					</ul>
-					<aside class="notes" data-markdown>
-						- remember for where: no =!, OR, “%partial%”, field not present
-						- remember no <> on where and orderBy different field
-					</aside>
-				</section>
-				<section>
-					<h2>The where operator</h2>
-					<ul>
-						<li>&lt;</li>
-						<li>&lt;=</li>
-						<li>==</li>
-						<li>&gt;=</li>
-						<li>&gt;</li>
-						<li class="fragment">array-contains</li>
-					</ul>
-					<aside class="notes" data-markdown>
-						- array-contains on one element per query
-					</aside>
-				</section>
-			</section>
+        </section>
+        <section>
+          <section>
+            <h1>
+              <span class="firebase-color">Querying</span> and <br /><span
+                class="firebase-color"
+                >sorting</span
+              >
+              data
+            </h1>
+          </section>
+          <section>
+            <h2>Four operators to play with</h2>
+            <ul>
+              <li class="fragment">Where</li>
+              <li class="fragment">OrderBy</li>
+              <li class="fragment">Limit</li>
+              <li class="fragment">startAt</li>
+            </ul>
+            <aside class="notes" data-markdown>
+              - remember for where: no =!, OR, “%partial%”, field not present -
+              remember no <> on where and orderBy different field
+            </aside>
+          </section>
+          <section>
+            <h2>The where operator</h2>
+            <ul>
+              <li>&lt;</li>
+              <li>&lt;=</li>
+              <li>==</li>
+              <li>&gt;=</li>
+              <li>&gt;</li>
+              <li class="fragment">!=</li>
+              <li class="fragment">in (A OR B)</li>
+              <li class="fragment">array-contains</li>
+            </ul>
+            <aside class="notes" data-markdown>
+              - array-contains on one element per query
+            </aside>
+          </section>
+        </section>
 
-			<section>
-				<section>
-					<h1>DiKO</h1>
-					<h2>Digital Koblingsordre</h2>
-				</section>
-				<section data-background="media/diko.png">
-				</section>
-				<section data-background="media/firestore-ui.png">
+        <section>
+          <section>
+            <h1>DiKO</h1>
+            <h2>Digital Koblingsordre</h2>
+          </section>
+          <section data-background="media/diko.png"></section>
+          <section data-background="media/firestore-ui.png"></section>
+        </section>
 
-				</section>
-			</section>
-
-			<section>
-				<section>
-					<h1>Security 🔒</h1>
-				</section>
-				<section>
-					<h2>Security Rules</h2>
-					<aside class="notes" data-markdown>
-						- Written in broke JS, and run before each request. Returns if allowed to read or write
-					</aside>
-					<pre class=""><code class="TypeScript" data-trim contenteditable>
+        <section>
+          <section>
+            <h1>Security 🔒</h1>
+          </section>
+          <section>
+            <h2>Security Rules</h2>
+            <aside class="notes" data-markdown>
+              - Written in broke JS, and run before each request. Returns if
+              allowed to read or write
+            </aside>
+            <pre class=""><code class="TypeScript" data-trim contenteditable>
 service cloud.firestore {
 	match /databases/{database}/documents {
 
@@ -489,59 +475,71 @@ service cloud.firestore {
 	}
 }
 					</code></pre>
-				</section>
-			</section>
+          </section>
+        </section>
 
-			<section>
-				<section>
-					<h1>Projects that fit <span class="firebase-color">Firestore</span></h1>
-				</section>
-				<section>
-					<h2>Projects that should consider <span class="firebase-color">Firestore</span></h2>
-					<ul>
-						<li class="fragment">Favoring reads over writes</li>
-						<li class="fragment">Mid sized or smaller projects</li>
-						<li class="fragment">Need blazing fast state sync between devices</li>
-						<li class="fragment">Can live with the downsides</li>
-					</ul>
-					<aside class="notes" data-markdown>
-						- good for newspaper, blogs, apps
-					</aside>
-				</section>
-				<section>
-					<h2>Projects that shouldn't consider <span class="firebase-color">Firestore</span></h2>
-					<ul>
-						<li class="fragment">Write heavy projects</li>
-						<!-- <li class="fragment">Huge projects</li> -->
-						<li class="fragment">Complex data structure</li>
-					</ul>
-					<aside class="notes" data-markdown>
-					</aside>
-				</section>
-			</section>
+        <section>
+          <section>
+            <h1>
+              Projects that fit <span class="firebase-color">Firestore</span>
+            </h1>
+          </section>
+          <section>
+            <h2>
+              Projects that should consider
+              <span class="firebase-color">Firestore</span>
+            </h2>
+            <ul>
+              <li class="fragment">Favoring reads over writes</li>
+              <li class="fragment">Mid sized or smaller projects</li>
+              <li class="fragment">
+                Need blazing fast state sync between devices
+              </li>
+              <li class="fragment">Can live with the downsides</li>
+            </ul>
+            <aside class="notes" data-markdown>
+              - good for newspaper, blogs, apps
+            </aside>
+          </section>
+          <section>
+            <h2>
+              Projects that shouldn't consider
+              <span class="firebase-color">Firestore</span>
+            </h2>
+            <ul>
+              <li class="fragment">Write heavy projects</li>
+              <!-- <li class="fragment">Huge projects</li> -->
+              <li class="fragment">Complex data structure</li>
+            </ul>
+            <aside class="notes" data-markdown></aside>
+          </section>
+        </section>
 
-			<section>
-				<section>
-					<h1>Pricing 💰</h1>
-				</section>
-				<section data-background="media/price.png">
-
-				</section>
-				<section>
-					<h2>Billed by <span class="firebase-color">reads</span>, <span class="firebase-color">writes</span> and <span class="firebase-color">deletes</span></h2>
-					<img class="stretch no-img-border" data-src="media/price-per-operation.png">
-					<aside class="notes" data-markdown>
-						- ca 200k reads for 1kr
-					</aside>
-				</section>
-				<section>
-					<h2>Only counts the affected documents</h2>
-					<aside class="notes" data-markdown>
-						<!-- - say that: pay for each time a CF runs -->
-					</aside>
-				</section>
-			</section>
-			<!-- <section>
+        <section>
+          <section>
+            <h1>Pricing 💰</h1>
+          </section>
+          <section data-background="media/price.png"></section>
+          <section>
+            <h2>
+              Billed by <span class="firebase-color">reads</span>,
+              <span class="firebase-color">writes</span> and
+              <span class="firebase-color">deletes</span>
+            </h2>
+            <img
+              class="stretch no-img-border"
+              data-src="media/price-per-operation.png"
+            />
+            <aside class="notes" data-markdown>- ca 200k reads for 1kr</aside>
+          </section>
+          <section>
+            <h2>Only counts the affected documents</h2>
+            <aside class="notes" data-markdown>
+              <!-- - say that: pay for each time a CF runs -->
+            </aside>
+          </section>
+        </section>
+        <!-- <section>
 				<section>
 					<img class="stretch no-img-border" data-src="media/functions.png">
 					<aside class="notes" data-markdown>
@@ -563,49 +561,51 @@ service cloud.firestore {
 				</section>
 			</section> -->
 
-			<section>
-				<h1>🎉 Out of Beta! 🎉</h1>
-			</section>
-			<section data-background="media/pondus/1.jpg">
-			</section>
+        <section>
+          <h1>🎉 Out of Beta! 🎉</h1>
+        </section>
+        <section data-background="media/pondus/1.jpg"></section>
 
-			<section data-background="media/firestore-ui.png">
+        <section data-background="media/firestore-ui.png"></section>
 
-			</section>
+        <section>
+          <h1>And that's <span class="firebase-color">Firestore</span></h1>
+        </section>
 
-			<section>
-				<h1>And that's <span class="firebase-color">Firestore</span></h1>
-			</section>
+        <section data-background="media/stock/questions.jpeg">
+          <h1 class="fragment">
+            <span class="firebase-color">Questions?</span>
+          </h1>
+        </section>
+        <section>
+          <h1>bit.ly/<span class="firebase-color">firestore</span>2019</h1>
+        </section>
+        <section>This page is unintentionally left blank</section>
+      </div>
+    </div>
 
-			<section data-background="media/stock/questions.jpeg">
-				<h1 class="fragment"><span class="firebase-color">Questions?</span></h1>
-			</section>
-			<section>
-				<h1>bit.ly/<span class="firebase-color">firestore</span>2019</h1>
-			</section>
-			<section>
-				This page is unintentionally left blank
-			</section>
-		</div>
-	</div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
 
-	<script src="lib/js/head.min.js"></script>
-	<script src="js/reveal.js"></script>
-
-	<script>
-		// More info about config & dependencies:
-		// - https://github.com/hakimel/reveal.js#configuration
-		// - https://github.com/hakimel/reveal.js#dependencies
-		Reveal.initialize({
-			history: true,
-			dependencies: [
-				{ src: 'plugin/markdown/marked.js' },
-				{ src: 'plugin/markdown/markdown.js' },
-				{ src: 'plugin/notes/notes.js', async: true },
-				{ src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
-			]
-		});
-	</script>
-</body>
-
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        history: true,
+        dependencies: [
+          { src: "plugin/markdown/marked.js" },
+          { src: "plugin/markdown/markdown.js" },
+          { src: "plugin/notes/notes.js", async: true },
+          {
+            src: "plugin/highlight/highlight.js",
+            async: true,
+            callback: function () {
+              hljs.initHighlightingOnLoad();
+            },
+          },
+        ],
+      });
+    </script>
+  </body>
 </html>
