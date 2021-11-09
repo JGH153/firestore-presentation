@@ -285,6 +285,17 @@
           <section>
             <h2>Multiple field where statements</h2>
           </section>
+          <section>
+            <h2 class="">Can query across sub collections</h2>
+            <img
+              class="stretch no-img-border"
+              data-src="media/firestoreDocs.png"
+            />
+            <h3 class="fragment">Collection Group Queries</h3>
+          </section>
+          <section>
+            <img class="stretch no-img-border" data-src="media/cgc.png" />
+          </section>
           <!-- <section>
 					<h2>Benefits comming for Realtime Database</h2>
 					<ul>
@@ -316,90 +327,7 @@
           </section>
           <section data-background="media/comp-index.png"></section>
         </section>
-        <section>
-          <section>
-            <h1>
-              The drawbacks of <span class="firebase-color">Firestore</span>
-            </h1>
-          </section>
-          <section>
-            <h2>If it can't be indexed, it can't be searched</h2>
-          </section>
-          <section>
-            <h2>Mixing datatypes causes problems</h2>
-          </section>
-          <section>
-            <h2>Can't query across sub collections</h2>
-            <img
-              class="stretch no-img-border"
-              data-src="media/firestoreDocs.png"
-            />
-          </section>
-          <section>
-            <h2>Can't do <b>where</b> like</h2>
-            <ul>
-              <li class="fragment strike">
-                Where age <span class="red">!=</span> 25
-              </li>
-              <li class="fragment strike">
-                Where age = 25 <span class="red">OR</span> age = 26
-              </li>
-              <li class="fragment">
-                Where name = <span class="red">"%Jan%"</span>
-              </li>
-              <li class="fragment">
-                Where age = <span class="red">*missing*</span>
-              </li>
-              <li class="fragment">And no <span class="red">JOIN</span></li>
-            </ul>
-          </section>
-          <section>
-            <h2>
-              Can't do "<span class="firebase-color">WHERE</span> age &lt; 25
-              <span class="firebase-color">ORDER BY</span>
-              name"
-            </h2>
-          </section>
-          <!-- <section>
-					<table>
-						<thead>
-							<tr>
-								<th>Age</th>
-								<th>Name</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>26</td>
-								<td>Jan</td>
-							</tr>
-							<tr>
-								<td>56</td>
-								<td>Per</td>
-							</tr>
-							<tr>
-								<td>33</td>
-								<td>Kim</td>
-							</tr>
-							<tr>
-								<td>47</td>
-								<td>Erik</td>
-							</tr>
-						</tbody>
-					</table>
-				</section> -->
-          <section>
-            <h2>Document limitations</h2>
-            <ul>
-              <li class="fragment">Max 1 write per sec per document</li>
-              <li class="fragment">Max 1MB per document</li>
-              <li class="fragment">Max 20k fields</li>
-            </ul>
-          </section>
-          <!-- <section>
-					<h2>Can't order by missing fields</h2>
-				</section> -->
-        </section>
+
         <section>
           <section>
             <h1>
@@ -443,10 +371,109 @@
 
         <section>
           <section>
+            <h1>
+              The drawbacks of <span class="firebase-color">Firestore</span>
+            </h1>
+          </section>
+          <section>
+            <h2>If it can't be indexed, it can't be searched</h2>
+          </section>
+          <section>
+            <h2>Mixing datatypes causes problems</h2>
+          </section>
+          <section>
+            <h2>Can't do <b>where</b> like</h2>
+            <ul>
+              <li class="fragment">
+                Where name = <span class="red">"%Jan%"</span>
+              </li>
+              <li class="fragment">
+                Where age = <span class="red">*missing*</span>
+              </li>
+              <li class="fragment">No <span class="red">JOIN</span></li>
+              <li class="fragment">
+                <span class="strike"
+                  >Where age <span class="red">!=</span> 25</span
+                >
+              </li>
+              <li class="fragment">
+                <span class="strike">
+                  Where age = 25 <span class="red">OR</span> age = 26</span
+                >
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h2>
+              Can't do "<span class="firebase-color">WHERE</span> age &lt; 25
+              <span class="firebase-color">ORDER BY</span>
+              name"
+            </h2>
+            <h3 class="fragment">
+              Can't do "<span class="firebase-color">WHERE</span> age = 25
+              <span class="firebase-color">ORDER BY</span>
+              name"
+            </h3>
+            <h3 class="fragment">
+              Can't do "<span class="firebase-color">WHERE</span> age &lt; 25
+              <span class="firebase-color">ORDER BY</span>
+              age"
+            </h3>
+          </section>
+          <!-- <section>
+					<table>
+						<thead>
+							<tr>
+								<th>Age</th>
+								<th>Name</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>26</td>
+								<td>Jan</td>
+							</tr>
+							<tr>
+								<td>56</td>
+								<td>Per</td>
+							</tr>
+							<tr>
+								<td>33</td>
+								<td>Kim</td>
+							</tr>
+							<tr>
+								<td>47</td>
+								<td>Erik</td>
+							</tr>
+						</tbody>
+					</table>
+				</section> -->
+          <section>
+            <h2>Document limitations</h2>
+            <ul>
+              <li class="fragment">Max 1 write per sec per document</li>
+              <li class="fragment">Max 1MB per document</li>
+              <li class="fragment">Max 20k fields</li>
+            </ul>
+          </section>
+          <!-- <section>
+					<h2>Can't order by missing fields</h2>
+				</section> -->
+        </section>
+
+        <section>
+          <section>
             <h1>DiKO</h1>
             <h2>Digital Koblingsordre</h2>
           </section>
           <section data-background="media/diko.png"></section>
+          <section data-state="dikovideo">
+            <a
+              href="https://www.dropbox.com/s/l5lqu2ukh2dpjke/2019-02-19%2013.51.25.mp4?dl=0"
+              target="_blank"
+              >Video</a
+            >
+          </section>
           <section data-background="media/firestore-ui.png"></section>
         </section>
 
@@ -510,6 +537,15 @@ service cloud.firestore {
               <li class="fragment">Write heavy projects</li>
               <!-- <li class="fragment">Huge projects</li> -->
               <li class="fragment">Complex data structure</li>
+              <li class="fragment">Need complex rules</li>
+            </ul>
+            <aside class="notes" data-markdown></aside>
+          </section>
+          <section>
+            <h2>Need to think about</h2>
+            <ul>
+              <li class="fragment">More focus on native mobile</li>
+              <li class="fragment">No new dev features</li>
             </ul>
             <aside class="notes" data-markdown></aside>
           </section>
@@ -562,15 +598,12 @@ service cloud.firestore {
 			</section> -->
 
         <section>
-          <h1>🎉 Out of Beta! 🎉</h1>
+          <h1>And that's <span class="firebase-color">Firestore</span></h1>
         </section>
+
         <section data-background="media/pondus/1.jpg"></section>
 
         <section data-background="media/firestore-ui.png"></section>
-
-        <section>
-          <h1>And that's <span class="firebase-color">Firestore</span></h1>
-        </section>
 
         <section data-background="media/stock/questions.jpeg">
           <h1 class="fragment">
@@ -606,6 +639,15 @@ service cloud.firestore {
           },
         ],
       });
+      // Reveal.addEventListener(
+      //   "dikovideo",
+      //   () => {
+      //     windowObjectReference = window.open(
+      //       "https://www.dropbox.com/s/l5lqu2ukh2dpjke/2019-02-19%2013.51.25.mp4?dl=0"
+      //     );
+      //   },
+      //   false
+      // );
     </script>
   </body>
 </html>
